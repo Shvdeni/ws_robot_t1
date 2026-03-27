@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: my_robot_description
+    relative_path: urdf/armassem1.urdf
+  srdf:
+    relative_path: config/armassem1.srdf
+  package_settings:
+    author_name: Me
+    author_email: me@my.com
+    generated_timestamp: 1774569045
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity

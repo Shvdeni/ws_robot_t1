@@ -1,0 +1,8 @@
+# Default initial positions for armassem1's ros2_control fake system
+
+initial_positions:
+  Joint_1_Joint: 0
+  Joint_2_Joint: 0
+  Joint_3_Joint: 0
+  Joint_4_Joint: 0
+  Joint_5_Joint: 0

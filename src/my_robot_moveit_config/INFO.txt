@@ -1,0 +1,6 @@
+cd ~/ws_robot_t1
+colcon build --symlink-install
+source /opt/ros/jazzy/setup.bash
+source ~/ws_robot_t1/install/setup.bash
+
+ros2 launch my_robot_moveit_config demo.launch.py

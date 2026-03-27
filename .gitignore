@@ -1,0 +1,38 @@
+# ROS 2 / colcon build artifacts
+build/
+install/
+log/
+
+# Colcon and ament marker files
+**/COLCON_IGNORE
+**/AMENT_IGNORE
+
+# CMake-generated artifacts
+**/CMakeFiles/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/CTestTestfile.cmake
+**/CTestConfiguration.ini
+**/CTestCustom.cmake
+**/Makefile
+**/compile_commands.json
+**/install_manifest.txt
+**/symlink_install_manifest.txt
+
+# Python cache
+**/__pycache__/
+**/*.pyc
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Windows Mark-of-the-Web metadata sidecar/ADS names
+**/*:Zone.Identifier
+**/*Zone.Identifier
