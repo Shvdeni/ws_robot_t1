@@ -1,0 +1,8 @@
+<library path="robot_arm_hardware">
+  <class
+    name="robot_arm_hardware/RobotArmSystem"
+    type="robot_arm_hardware::RobotArmSystem"
+    base_class_type="hardware_interface::SystemInterface">
+    <description>Serial ros2_control system for an Arduino-driven 5-axis stepper arm.</description>
+  </class>
+</library>

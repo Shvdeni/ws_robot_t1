@@ -21,3 +21,24 @@ arm_controller:
     state_interfaces:
       - position
       - velocity
+    state_publish_rate: 50.0
+    action_monitor_rate: 20.0
+    allow_partial_joints_goal: false
+    constraints:
+      goal_time: 5.0
+      stopped_velocity_tolerance: 0.2
+      Joint_1_Joint:
+        trajectory: 0.6
+        goal: 0.35
+      Joint_2_Joint:
+        trajectory: 0.6
+        goal: 0.35
+      Joint_3_Joint:
+        trajectory: 0.6
+        goal: 0.35
+      Joint_4_Joint:
+        trajectory: 0.5
+        goal: 0.3
+      Joint_5_Joint:
+        trajectory: 0.5
+        goal: 0.3

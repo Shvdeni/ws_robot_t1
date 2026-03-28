@@ -3,3 +3,9 @@ colcon build --packages-select move_joint5_xyz
 source install/setup.bash
 
 ros2 run move_joint5_xyz move_joint5_xyz_node -0.30 0.05 0.3
+
+------------------------
+ros2 launch my_robot_moveit_config demo.launch.py
+source /home/zian/ws_robot_t1/install/setup.bash
+ros2 run move_joint5_xyz move_joint5_vertical_circle_node
+-------------------------

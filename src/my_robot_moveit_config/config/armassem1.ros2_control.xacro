@@ -1,12 +1,27 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:macro name="armassem1_ros2_control" params="name initial_positions_file">
+    <xacro:macro name="armassem1_ros2_control" params="name initial_positions_file use_mock_hardware:=true serial_port:=/dev/ttyACM0 baud_rate:=115200">
         <xacro:property name="initial_positions" value="${xacro.load_yaml(initial_positions_file)['initial_positions']}"/>
+        <xacro:property name="joint1_steps_per_radian" value="${(1600.0 * 18.0) / (2.0 * 3.141592653589793)}"/>
+        <xacro:property name="joint2_steps_per_radian" value="${(800.0 * 80.0) / (2.0 * 3.141592653589793)}"/>
+        <xacro:property name="joint3_steps_per_radian" value="${(800.0 * 80.0) / (2.0 * 3.141592653589793)}"/>
+        <xacro:property name="joint4_steps_per_radian" value="${(800.0 * 50.0) / (2.0 * 3.141592653589793)}"/>
+        <xacro:property name="joint5_steps_per_radian" value="${(800.0 * 30.0) / (2.0 * 3.141592653589793)}"/>
 
         <ros2_control name="${name}" type="system">
             <hardware>
-                <!-- By default, set up controllers for simulation. This won't work on real hardware -->
-                <plugin>mock_components/GenericSystem</plugin>
+                <xacro:if value="${use_mock_hardware}">
+                    <plugin>mock_components/GenericSystem</plugin>
+                </xacro:if>
+                <xacro:unless value="${use_mock_hardware}">
+                    <plugin>robot_arm_hardware/RobotArmSystem</plugin>
+                    <param name="serial_port">${serial_port}</param>
+                    <param name="baud_rate">${baud_rate}</param>
+                    <param name="command_tolerance_rad">0.0005</param>
+                    <param name="state_poll_period_sec">0.02</param>
+                    <param name="min_command_period_sec">0.005</param>
+                    <param name="min_step_delta_to_resend">1</param>
+                </xacro:unless>
             </hardware>
             <joint name="Joint_1_Joint">
                 <command_interface name="position"/>
@@ -14,6 +29,7 @@
                   <param name="initial_value">${initial_positions['Joint_1_Joint']}</param>
                 </state_interface>
                 <state_interface name="velocity"/>
+                <param name="steps_per_radian">${joint1_steps_per_radian}</param>
             </joint>
             <joint name="Joint_2_Joint">
                 <command_interface name="position"/>
@@ -21,6 +37,7 @@
                   <param name="initial_value">${initial_positions['Joint_2_Joint']}</param>
                 </state_interface>
                 <state_interface name="velocity"/>
+                <param name="steps_per_radian">${joint2_steps_per_radian}</param>
             </joint>
             <joint name="Joint_3_Joint">
                 <command_interface name="position"/>
@@ -28,6 +45,7 @@
                   <param name="initial_value">${initial_positions['Joint_3_Joint']}</param>
                 </state_interface>
                 <state_interface name="velocity"/>
+                <param name="steps_per_radian">${joint3_steps_per_radian}</param>
             </joint>
             <joint name="Joint_4_Joint">
                 <command_interface name="position"/>
@@ -35,6 +53,7 @@
                   <param name="initial_value">${initial_positions['Joint_4_Joint']}</param>
                 </state_interface>
                 <state_interface name="velocity"/>
+                <param name="steps_per_radian">${joint4_steps_per_radian}</param>
             </joint>
             <joint name="Joint_5_Joint">
                 <command_interface name="position"/>
@@ -42,6 +61,7 @@
                   <param name="initial_value">${initial_positions['Joint_5_Joint']}</param>
                 </state_interface>
                 <state_interface name="velocity"/>
+                <param name="steps_per_radian">${joint5_steps_per_radian}</param>
             </joint>
 
         </ros2_control>

@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="armassem1">
     <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+    <xacro:arg name="use_mock_hardware" default="true" />
+    <xacro:arg name="serial_port" default="/dev/ttyACM0" />
+    <xacro:arg name="baud_rate" default="115200" />
 
     <!-- Import armassem1 urdf file -->
     <xacro:include filename="$(find my_robot_description)/urdf/armassem1.urdf" />
@@ -9,6 +12,11 @@
     <xacro:include filename="armassem1.ros2_control.xacro" />
 
 
-    <xacro:armassem1_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    <xacro:armassem1_ros2_control
+        name="ArmAssem1System"
+        initial_positions_file="$(arg initial_positions_file)"
+        use_mock_hardware="$(arg use_mock_hardware)"
+        serial_port="$(arg serial_port)"
+        baud_rate="$(arg baud_rate)"/>
 
 </robot>

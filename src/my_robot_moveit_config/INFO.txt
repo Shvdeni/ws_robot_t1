@@ -4,3 +4,28 @@ source /opt/ros/jazzy/setup.bash
 source ~/ws_robot_t1/install/setup.bash
 
 ros2 launch my_robot_moveit_config demo.launch.py
+
+------------RUN----------
+pkill -f /opt/ros/jazzy/lib/controller_manager/ros2_control_node
+pkill -f /opt/ros/jazzy/lib/moveit_ros_move_group/move_group
+pkill -f /opt/ros/jazzy/lib/robot_state_publisher/robot_state_publisher
+
+cd /home/zian/ws_robot_t1
+source install/setup.bash
+export ROS_LOG_DIR=/tmp/ros_logs_real_hw
+ros2 launch my_robot_moveit_config real_hardware.launch.py serial_port:=/dev/ttyACM0
+
+OR
+cd /home/zian/ws_robot_t1
+source install/setup.bash
+ros2 launch my_robot_moveit_config real_hardware.launch.py serial_port:=/dev/ttyACM0
+
+
+------------PORT:
+usbipd list
+
+usbipd bind --busid <BUSID>
+usbipd attach --wsl --busid <BUSID>
+
+check port in wsl:   ls /dev/ttyACM*
+------------PORT:
